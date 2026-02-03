@@ -6,10 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>haloo</h1>
-    <H2>ini divoo</H2>
-    <h3>ini faiz</h3>
-    <h4>ini arul</h4>
-    <H5>ini dimas</H5>
+    <h1>ini halaman utama</h1>
 </body>
 </html>
