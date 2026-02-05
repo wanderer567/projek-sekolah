@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
@@ -83,7 +83,7 @@
                                 <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase">Nama Siswa</th>
                                 <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase">NISN</th>
                                 <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase">Waktu</th>
-                                <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase text-center">Status</th>
+                                <th class="px-6 py-4 atext-xs font-bold text-gray-500 uppercase text-center">Status</th>
                                 <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase text-center">Aksi</th>
                             </tr>
                         </thead>
