@@ -10,10 +10,14 @@
 ## Install Our Project
 ```bash
 npm install
+```
+```bash
 npm update
 ```
 ```bash
 composer install
+```
+```bash
 composer update
 ```
 
