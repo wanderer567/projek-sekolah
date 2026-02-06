@@ -5,21 +5,33 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="https://github.com/wanderer567/projek-sekolah.git"><img src="https://img.shields.io/badge/github-repo-blue?logo=github" alt="License"></a>
+
 </p>
 
 ## Install Our Project
+
+```bash
+git clone https://github.com/wanderer567/projek-sekolah.git
+```
+
 ```bash
 npm install
+```
+```bash
 npm update
 ```
 ```bash
 composer install
+```
+```bash
 composer update
 ```
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Thank you for contributing to this project
+[Laravel documentation](https://laravel.com/docs/contributions).
 
 
 
