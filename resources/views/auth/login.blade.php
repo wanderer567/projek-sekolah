@@ -39,9 +39,21 @@
                 </a>
             @endif
 
+            
+             <div class="flex items-center justify-end mt-4">
+          @if (Route::has('call-admin'))
+    <a href="{{ route('call-admin') }}"
+       class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline">
+        {{ __('Call Admin') }}
+    </a>
+@endif
+
+
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+
+        
     </form>
 </x-guest-layout>
