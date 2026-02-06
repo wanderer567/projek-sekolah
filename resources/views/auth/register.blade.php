@@ -41,10 +41,16 @@
             </button>
         </form>
 
+<<<<<<< HEAD
         <p class="text-center text-sm text-gray-500 mt-4">
             Sudah punya akun?
             <a href="{{ route('login') }}" class="text-gray-800 font-semibold hover:underline">
                 Login
+=======
+        <div class="flex items-center justify-end mt-4">
+            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                {{ __('Already registered?') }}
+>>>>>>> 0ea59f2e4bfb13f21b006656a7e257268929b916
             </a>
         </p>
 
