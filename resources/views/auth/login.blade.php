@@ -24,7 +24,7 @@
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required>
 
-<<<<<<< HEAD
+
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
@@ -39,7 +39,7 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
-=======
+
             <input type="password" name="password" placeholder="Password"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required>
@@ -49,7 +49,7 @@
                 Remember me
             </div>
 
-<<<<<<< HEAD
+
             
              <div class="flex items-center justify-end mt-4">
           @if (Route::has('call-admin'))
@@ -59,7 +59,7 @@
     </a>
 @endif
 
->>>>>>> 36a25fcbcc5a41f8331b559a43b1e368675d52fd
+
 
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
@@ -68,7 +68,7 @@
 
         
     </form>
-=======
+
             <button
                 class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition">
                 LOGIN
@@ -89,5 +89,5 @@
             100% { transform: translateX(0); }
         }
     </style>
->>>>>>> f80067a (update halaman login tampilan)
+
 </x-guest-layout>

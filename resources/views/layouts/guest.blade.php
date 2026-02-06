@@ -26,7 +26,7 @@
 </div>
 
 
-<<<<<<< HEAD
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -43,7 +43,6 @@
             </div>
         </div>
     </body>
-=======
+
 </body>
->>>>>>> 36a25fcbcc5a41f8331b559a43b1e368675d52fd
 </html>
