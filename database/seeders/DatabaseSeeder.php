@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\SiswaSeeder;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,12 +15,14 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
-        // User::factory(10)->create();
+{
+    // Hapus atau beri tanda komentar (//) pada bagian User ini 
+    // karena ini bawaan Laravel yang bikin error kalau model User-nya belum pas
+    // User::factory()->create([ ... ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-    }
+    // Panggil seeder Siswa yang sudah kita buat tadi
+    $this->call([
+        SiswaSeeder::class,
+    ]);
+}
 }
