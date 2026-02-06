@@ -6,7 +6,7 @@
                 🔐
             </div>
             <h2 class="text-2xl font-bold mt-3">Login</h2>
-            <p class="text-sm text-gray-500">Masuk untuk ke halaman selanjutnya</p>
+            <p class="text-sm text-gray-500">Selamat Datang Di Sistem Absensi SMPN 1 Kedawung</p>
         </div>
 
         @if ($errors->any())
@@ -41,7 +41,6 @@
                 @endif
             </div>
 
-            <!-- Tombol Login -->
             <button
     type="submit"
     class="w-full py-3 rounded-lg font-semibold text-white
