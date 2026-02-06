@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          keyframes: {
+            fade: {
+              '0%': { opacity: '0', transform: 'scale(0.95)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            }
+          }
+        }
+      }
+    }
+    </script>
+</head>
+<title>Laravell</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+ 
+   <div class="w-full max-w-md bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 text-white animate-[fade_0.6s_ease-in-out]">
+    {{ $slot }}
+</div>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+<<<<<<< HEAD
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -27,4 +43,7 @@
             </div>
         </div>
     </body>
+=======
+</body>
+>>>>>>> 36a25fcbcc5a41f8331b559a43b1e368675d52fd
 </html>
