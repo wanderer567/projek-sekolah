@@ -22,22 +22,6 @@
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required>
 
-<<<<<<< HEAD
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-=======
             <input type="password" name="password" placeholder="Password"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required>
@@ -57,30 +41,7 @@
                 @endif
             </div>
 
-<<<<<<< HEAD
             <!-- Tombol Login -->
-=======
-<<<<<<< HEAD
-            
-             <div class="flex items-center justify-end mt-4">
-          @if (Route::has('call-admin'))
-    <a href="{{ route('call-admin') }}"
-       class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline">
-        {{ __('Call Admin') }}
-    </a>
-@endif
-
->>>>>>> 36a25fcbcc5a41f8331b559a43b1e368675d52fd
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-
-        
-    </form>
-=======
->>>>>>> 0ea59f2e4bfb13f21b006656a7e257268929b916
             <button
     type="submit"
     class="w-full py-3 rounded-lg font-semibold text-white
@@ -92,14 +53,7 @@
 </button>
 
         </form>
-
-        <!-- Link Register -->
-        <p class="text-center text-sm text-gray-600 mt-5">
-            Belum punya akun?
-            <a href="{{ route('register') }}" 
-   class="text-black/80 hover:text-black font-semibold transition">
-    Daftar sekarang
-</a>
+    
 
         </p>
     </div>
