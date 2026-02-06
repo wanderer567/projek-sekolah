@@ -23,6 +23,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+<<<<<<< HEAD
+Route::get('/absen', function () {
+    return view('absen');
+});
+
+
+=======
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
@@ -36,4 +43,5 @@ Route::get('/dashboard-absensi', function () {
     return view('dashboard');
 });
 
+>>>>>>> 3c78d2581c8dbfd6762db81c00d4ea271138a876
 require __DIR__.'/auth.php';
