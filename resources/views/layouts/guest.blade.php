@@ -26,6 +26,7 @@
 </div>
 
 
+<<<<<<< HEAD
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -46,3 +47,5 @@
 
 </body>
 </html>
+=======
+>>>>>>> b6f2da7b798cf2b35c9d18f76501570da8e5a6bc
