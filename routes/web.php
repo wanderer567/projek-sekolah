@@ -19,4 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/absen', function () {
+    return view('absen');
+});
+
+
 require __DIR__.'/auth.php';
