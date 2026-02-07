@@ -37,14 +37,27 @@
                 <i class="fas fa-chevron-down ml-2 text-xs"></i>
             </button>
 
-            <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-xl z-50">
-                <div class="py-1">
-                    <a href="?range=hari" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 border-b border-gray-50 text-left">Hari Ini</a>
-                    <a href="?range=minggu" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 border-b border-gray-50 text-left">Minggu Ini</a>
-                    <a href="?range=bulan" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 border-b border-gray-50 text-left">Bulan Ini</a>
-                    <a href="?range=semester" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 text-left">Semester Ini</a>
-                </div>
-            </div>
+           <div x-show="open" 
+     @click.away="open = false" 
+     x-transition:enter="transition ease-out duration-100"
+     x-transition:enter-start="transform opacity-0 scale-95"
+     x-transition:enter-end="transform opacity-100 scale-100"
+     class="absolute right-0 mt-2 w-52 bg-white border border-gray-200 rounded-xl shadow-2xl z-[9999]">
+    <div class="py-2">
+        <a href="?range=hari" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 border-b border-gray-50">
+            <i class="fas fa-calendar-day mr-3 text-gray-400"></i> Hari Ini
+        </a>
+        <a href="?range=minggu" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 border-b border-gray-50">
+            <i class="fas fa-calendar-week mr-3 text-gray-400"></i> Minggu Ini
+        </a>
+        <a href="?range=bulan" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 border-b border-gray-50">
+            <i class="fas fa-calendar-alt mr-3 text-gray-400"></i> Bulan Ini
+        </a>
+        <a href="?range=semester" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">
+            <i class="fas fa-graduation-cap mr-3 text-gray-400"></i> Semester Ini
+        </a>
+    </div>
+</div>
         </div>
     </div>
     

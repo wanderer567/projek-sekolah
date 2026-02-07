@@ -22,7 +22,6 @@
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required>
 
-<<<<<<< HEAD
 
         <!-- Remember Me -->
         <div class="block mt-4">
@@ -39,8 +38,6 @@
                 </a>
             @endif
 
-=======
->>>>>>> b6f2da7b798cf2b35c9d18f76501570da8e5a6bc
             <input type="password" name="password" placeholder="Password"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required>
@@ -60,30 +57,7 @@
                 @endif
             </div>
 
-<<<<<<< HEAD
-
-            
-             <div class="flex items-center justify-end mt-4">
-          @if (Route::has('call-admin'))
-    <a href="{{ route('call-admin') }}"
-       class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline">
-        {{ __('Call Admin') }}
-    </a>
-@endif
-
-
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-
-        
-    </form>
-
-=======
             <!-- Tombol Login -->
->>>>>>> b6f2da7b798cf2b35c9d18f76501570da8e5a6bc
             <button
     type="submit"
     class="w-full py-3 rounded-lg font-semibold text-white
@@ -113,9 +87,4 @@
             100% { transform: translateX(0); }
         }
     </style>
-<<<<<<< HEAD
-
 </x-guest-layout>
-=======
-</x-guest-layout>
->>>>>>> b6f2da7b798cf2b35c9d18f76501570da8e5a6bc
