@@ -5,13 +5,19 @@ use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/call-admin', function () {
+    return view('auth.call-admin');
+})->name('call-admin');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -22,6 +28,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/siswa', [SiswaController::class, 'index']);
     
     
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+});
+
+
+
+Route::get('/dashboard-absensi', function () {
+    return view('dashboard');
 });
 
 require __DIR__.'/auth.php';
