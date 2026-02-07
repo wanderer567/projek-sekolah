@@ -22,7 +22,6 @@
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required>
 
-<<<<<<< HEAD
 
         <!-- Remember Me -->
         <div class="block mt-4">
@@ -39,8 +38,6 @@
                 </a>
             @endif
 
-=======
->>>>>>> b6f2da7b798cf2b35c9d18f76501570da8e5a6bc
             <input type="password" name="password" placeholder="Password"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required>
@@ -116,9 +113,4 @@
             100% { transform: translateX(0); }
         }
     </style>
-<<<<<<< HEAD
-
 </x-guest-layout>
-=======
-</x-guest-layout>
->>>>>>> b6f2da7b798cf2b35c9d18f76501570da8e5a6bc
