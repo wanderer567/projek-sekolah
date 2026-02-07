@@ -6,7 +6,7 @@
                 🔐
             </div>
             <h2 class="text-2xl font-bold mt-3">Login</h2>
-            <p class="text-sm text-gray-500">Masuk untuk ke halaman selanjutnya</p>
+            <p class="text-sm text-gray-500">Selamat Datang Di Sistem Absensi SMPN 1 Kedawung</p>
         </div>
 
         @if ($errors->any())
@@ -21,6 +21,22 @@
             <input type="email" name="email" placeholder="Email"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 required>
+
+
+        <!-- Remember Me -->
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+            </label>
+        </div>
+
+        <div class="flex items-center justify-end mt-4">
+            @if (Route::has('password.request'))
+                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+            @endif
 
             <input type="password" name="password" placeholder="Password"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
@@ -41,7 +57,33 @@
                 @endif
             </div>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+            
+             <div class="flex items-center justify-end mt-4">
+          @if (Route::has('call-admin'))
+    <a href="{{ route('call-admin') }}"
+       class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline">
+        {{ __('Call Admin') }}
+    </a>
+@endif
+
+
+
+            <x-primary-button class="ms-3">
+                {{ __('Log in') }}
+            </x-primary-button>
+        </div>
+
+        
+    </form>
+
+=======
             <!-- Tombol Login -->
+>>>>>>> b6f2da7b798cf2b35c9d18f76501570da8e5a6bc
+>>>>>>> 22b33e9b9d14d9c344e3af923cbca2f970962eb6
             <button
     type="submit"
     class="w-full py-3 rounded-lg font-semibold text-white

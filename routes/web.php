@@ -30,17 +30,4 @@ Route::middleware('auth')->group(function () {
     
 });
 
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
-});
-
-
-
-Route::get('/dashboard-absensi', function () {
-    return view('dashboard');
-});
-
 require __DIR__.'/auth.php';

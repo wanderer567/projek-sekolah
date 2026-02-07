@@ -1,26 +1,14 @@
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
-        {{ __(Do you want to create an account? Contact The Admin number') }}
+        {{ __('Do you want to create an account? Contact The Admin number') }}
     </div>
 
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
 
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
         <div class="flex justify-end mt-4">
             <x-primary-button>
-                {{ __('Confirm') }}
+                <a href="https://wa.me/+6281460367229?text=Hallo%10Admin,%10aku%10mau%10buat%10akun">Contact</a>
             </x-primary-button>
         </div>
     </form>
