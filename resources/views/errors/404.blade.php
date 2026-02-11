@@ -7,7 +7,7 @@
     <style>
         body { background-color: #ffffff; color: black; font-family: Arial, sans-serif; text-align: center; padding-top: 150px; }
         h1 { font-size: 5rem; margin: 140px; }
-        p { font-size: 1.2rem; margin: 20px 0; }
+        p { font-size: 1.2rem; margin: 20px 0; }          
         a { color: #000000; text-decoration: none; font-weight: bold; }
     </style>
 </head>
