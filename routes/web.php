@@ -19,37 +19,47 @@ Route::get('/call-admin', function () {
     return view('auth.call-admin');
 })->name('call-admin');
 
-// Harus Login
 Route::middleware('auth')->group(function () {
-    
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // Ubah ke POST agar aman
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // Fitur Umum (Bisa diakses Admin & Guru)
-    Route::get('/manual', function () { return view('guru.absen-manual'); })->name('guru.manual');
-    Route::get('/qr', function (){ return view('guru.absen-qr'); })->name('guru.qr');
-    Route::get('/donwload', function () { return view('guru.donwload-absen'); })->name('guru.donwload');
+    Route::get('/manual', fn() => view('guru.absen-manual'))->name('guru.manual');
+    Route::get('/qr', fn() => view('guru.absen-qr'))->name('guru.qr');
+    Route::get('/donwload', fn() => view('guru.donwload-absen'))->name('guru.donwload');
 
-   Route::middleware(['checkRole:admin'])->group(function () {
-    Route::get('/admin/dashboard', function () { return view('admin.dashboard'); })->name('admin.dashboard');
+    Route::middleware(['checkRole:admin'])->group(function () {
 
-    // CRUD Siswa
-    Route::get('/admin/data-siswa', [SiswaController::class, 'index'])->name('admin.data-siswa');
-    Route::post('/admin/data-siswa', [SiswaController::class, 'store'])->name('admin.siswa.store');
-    Route::put('/admin/data-siswa/{id}', [SiswaController::class, 'update'])->name('admin.siswa.update');
-    Route::delete('/admin/data-siswa/{id}', [SiswaController::class, 'destroy'])->name('admin.siswa.delete');
+        Route::get('/admin/dashboard', fn() => view('admin.dashboard'))->name('admin.dashboard');
 
-    // --- PERBAIKAN CRUD GURU (Ganti baris yang lama dengan ini) ---
-    Route::get('/admin/data-guru', [GuruController::class, 'index'])->name('admin.data-guru');
-    Route::post('/admin/data-guru', [GuruController::class, 'store'])->name('admin.guru.store');
-    Route::put('/admin/data-guru/{id}', [GuruController::class, 'update'])->name('admin.guru.update');
-    Route::delete('/admin/data-guru/{id}', [GuruController::class, 'destroy'])->name('admin.guru.delete');
-});
+        // halaman data siswa level
+        Route::get('/admin/data-siswa', [SiswaController::class, 'index'])->name('admin.data-siswa'); // tampil halaman
 
-    // --- KHUSUS ROLE: GURU ---
+        Route::post('/admin/data-siswa', [SiswaController::class, 'store'])->name('admin.siswa.store'); // tambah manual
+
+        Route::post('/admin/data-siswa/import', [SiswaController::class, 'import'])->name('admin.siswa.import'); // import excel
+
+        Route::put('/admin/data-siswa/{id}', [SiswaController::class, 'update'])->name('admin.siswa.update'); // edit
+
+        Route::delete('/admin/data-siswa/{id}', [SiswaController::class, 'destroy'])->name('admin.siswa.delete'); // hapus
+
+        Route::get('/admin/data-siswa/filter', [SiswaController::class, 'filter'])
+    ->name('admin.siswa.filter');
+        // Route::get('/admin/data-siswa/filter', [SiswaController::class, 'filter'])->name('admin.siswa.filter');
+        // ------------
+
+        //  halaman data gutu level 
+        Route::get('/admin/data-guru', [GuruController::class, 'index'])->name('admin.data-guru');
+
+        Route::post('/admin/data-guru', [GuruController::class, 'store'])->name('admin.guru.store');
+
+        Route::put('/admin/data-guru/{id}', [GuruController::class, 'update'])->name('admin.guru.update');
+
+        Route::delete('/admin/data-guru/{id}', [GuruController::class, 'destroy'])->name('admin.guru.delete');
+        // ------------
+    });
+
     Route::middleware(['checkRole:guru'])->group(function () {
-        Route::get('/guru/dashboard', function () {
-            return view('guru.dashboard');
-        })->name('guru.dashboard');    
+        Route::get('/guru/dashboard', fn() => view('guru.dashboard'))->name('guru.dashboard');
     });
 });
