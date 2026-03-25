@@ -113,8 +113,7 @@ Thank you for contributing to this project
 
 ## Template Absen
 
-> Gunakan template ini untuk import data siswa
-
+Gunakan template ini untuk import data siswa
 [Download Template File .xlsx](https://github.com//REPO/raw/main/templates/template-absen.xlsx)
 
 
