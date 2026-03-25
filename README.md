@@ -27,6 +27,12 @@ composer install
 ```bash
 composer update
 ```
+## install library excel
+
+```bash
+composer require maatwebsite/excel
+```
+
 ## .env
 ```bash
 APP_NAME=Laravel
