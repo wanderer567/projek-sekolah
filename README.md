@@ -111,8 +111,11 @@ Thank you for contributing to this project
 
 
 
-## Template absensi .xlsx 
-(Click This For Start Donwloading)
+## Template Absen
+
+> Gunakan template ini untuk import data siswa
+
+[Download Template File .xlsx](https://github.com//REPO/raw/main/templates/template-absen.xlsx)
 
 
 ## License
