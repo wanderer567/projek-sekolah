@@ -12,10 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('siswa', function (Blueprint $table) {
-            // Tambah kolom QR (nullable dulu biar tidak bentrok data lama)
-            if (!Schema::hasColumn('siswa', 'code_qr_siswa')) {
-                $table->string('code_qr_siswa')->nullable()->after('kelas');
-            }
+            $table->unique('code_qr_siswa');
         });
     }
 
@@ -25,9 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('siswa', function (Blueprint $table) {
-            if (Schema::hasColumn('siswa', 'code_qr_siswa')) {
-                $table->dropColumn('code_qr_siswa');
-            }
+            $table->dropUnique(['code_qr_siswa']);
         });
     }
 };

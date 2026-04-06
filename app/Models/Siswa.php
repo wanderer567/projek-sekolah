@@ -25,6 +25,7 @@ class Siswa extends Model
     'nama', 
     'nisn', 
     'kelas', 
+    'code_qr_siswa',
 ];
 
     /**

@@ -182,127 +182,123 @@
     <canvas id="capture-canvas" class="hidden"></canvas>
     <audio id="beep-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3"></audio>
 
-    <script>
-        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString('id-ID', dateOptions);
+  <script>
+const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+document.getElementById('current-date').innerText = new Date().toLocaleDateString('id-ID', dateOptions);
 
-        let html5QrcodeScanner = null;
-        let isScanning = false;
+let scanner = null;
+let isScanning = false;
 
-        async function startScanner() {
-            try {
-                html5QrcodeScanner = new Html5Qrcode("reader");
-                const config = { fps: 10, qrbox: { width: 250, height: 250 }, aspectRatio: 1.0 };
-                
-                await html5QrcodeScanner.start({ facingMode: "user" }, config, onScanSuccess);
-                
-                isScanning = true;
-                document.getElementById('btn-start').classList.add('hidden');
-                document.getElementById('btn-stop').classList.remove('hidden');
-            } catch (err) {
-                Swal.fire('Error', 'Gagal membuka kamera: ' + err, 'error');
-            }
+async function startScanner() {
+    try {
+        scanner = new Html5Qrcode("reader");
+        const config = { fps: 10, qrbox: { width: 250, height: 250 }, aspectRatio: 1.0 };
+        await scanner.start({ facingMode: "user" }, config, onScanSuccess);
+
+        isScanning = true;
+        document.getElementById('btn-start').classList.add('hidden');
+        document.getElementById('btn-stop').classList.remove('hidden');
+    } catch (err) {
+        Swal.fire('Error', 'Gagal membuka kamera: ' + err, 'error');
+    }
+}
+
+async function stopScanner() {
+    if (scanner) {
+        await scanner.stop();
+        isScanning = false;
+        document.getElementById('btn-start').classList.remove('hidden');
+        document.getElementById('btn-stop').classList.add('hidden');
+    }
+}
+
+function onScanSuccess(decodedText) {
+    if (!isScanning) return;
+    scanner.pause();
+    document.getElementById('beep-sound').play();
+    document.getElementById('flash').style.animation = 'flashEffect 0.5s ease-out';
+
+    captureImage(decodedText);
+}
+
+function captureImage(qrCode) {
+    const video = document.querySelector("#reader video");
+    const canvas = document.getElementById("capture-canvas");
+    if(video) {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+        const photoData = canvas.toDataURL("image/png");
+        sendAttendance(qrCode, photoData);
+    }
+}
+
+function sendAttendance(qrCode, photo) {
+    fetch("{{ route('admin.absen.store') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({ qr_code: qrCode, photo: photo })
+    })
+    .then(res => res.json())
+    .then(res => {
+        if(res.status === 'success'){
+            renderNewRow(res.data);
+            updateStats(res.data.status);
+            Swal.fire({ title:'Berhasil', text:`${res.data.nama} (${res.data.status})`, icon:'success', timer:1500, showConfirmButton:false });
+        } else {
+            Swal.fire('Gagal', res.message, 'error');
         }
+        setTimeout(() => scanner.resume(), 2000);
+    })
+    .catch(err => {
+        console.error(err);
+        scanner.resume();
+    });
+}
 
-        async function stopScanner() {
-            if (html5QrcodeScanner) {
-                await html5QrcodeScanner.stop();
-                isScanning = false;
-                document.getElementById('btn-start').classList.remove('hidden');
-                document.getElementById('btn-stop').classList.add('hidden');
-            }
-        }
+function renderNewRow(data){
+    const tbody = document.getElementById('attendance-list');
+    const emptyRow = document.getElementById('empty-row');
+    if(emptyRow) emptyRow.remove();
 
-        function onScanSuccess(decodedText) {
-            if (!isScanning) return;
-            html5QrcodeScanner.pause();
-            
-            document.getElementById('beep-sound').play();
-            const flash = document.getElementById('flash');
-            flash.style.animation = 'flashEffect 0.5s ease-out';
+    const badge = data.status === 'HADIR' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600';
 
-            captureImage(decodedText);
-        }
+    const tr = `
+    <tr class="bg-blue-50 transition-all duration-700">
+        <td class="px-6 py-4">
+            <div class="flex items-center">
+                <div class="h-9 w-9 rounded-full bg-indigo-50 text-[#175E92] flex items-center justify-center font-bold mr-3 border border-indigo-100">
+                    ${data.nama.charAt(0)}
+                </div>
+                <div>
+                    <div class="font-bold text-gray-800 text-sm">${data.nama}</div>
+                    <div class="text-[10px] text-gray-500">${data.nisn} | ${data.kelas}</div>
+                </div>
+            </div>
+        </td>
+        <td class="px-6 py-4 font-mono text-xs text-gray-600">${data.waktu}</td>
+        <td class="px-6 py-4 text-center">
+            <span class="px-3 py-1 rounded-full text-[10px] font-bold ${badge}">${data.status}</span>
+        </td>
+        <td class="px-6 py-4">
+            <img src="${data.foto}" class="w-10 h-10 object-cover rounded-md border shadow-sm mx-auto">
+        </td>
+    </tr>`;
+    tbody.insertAdjacentHTML('afterbegin', tr);
+}
 
-        function captureImage(qrCode) {
-            const video = document.querySelector("#reader video");
-            const canvas = document.getElementById("capture-canvas");
-            
-            if (video) {
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
-                const photoData = canvas.toDataURL("image/png");
-                
-                sendAttendanceRequest(qrCode, photoData);
-            }
-        }
-
-        function sendAttendanceRequest(qrCode, photo) {
-            fetch("{{ route('admin.absen.store') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({ qr_code: qrCode, photo: photo })
-            })
-            .then(res => res.json())
-            .then(res => {
-                if (res.status === 'success') {
-                    renderNewRow(res.data);
-                    updateVisualStats(res.data.status);
-                    Swal.fire({ title: 'Berhasil!', text: res.data.nama + ' (' + res.data.status + ')', icon: 'success', timer: 1500, showConfirmButton: false });
-                } else {
-                    Swal.fire('Gagal', res.message, 'error');
-                }
-                setTimeout(() => html5QrcodeScanner.resume(), 3000);
-            })
-            .catch(err => {
-                console.error(err);
-                html5QrcodeScanner.resume();
-            });
-        }
-
-        function renderNewRow(data) {
-            const tbody = document.getElementById('attendance-list');
-            const emptyRow = document.getElementById('empty-row');
-            if(emptyRow) emptyRow.remove();
-
-            const badge = data.status === 'HADIR' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600';
-
-            const tr = `
-                <tr class="bg-blue-50 transition-all duration-700">
-                    <td class="px-6 py-4">
-                        <div class="flex items-center">
-                            <div class="h-9 w-9 rounded-full bg-indigo-50 text-[#175E92] flex items-center justify-center font-bold mr-3 border border-indigo-100">
-                                ${data.nama.charAt(0)}
-                            </div>
-                            <div>
-                                <div class="font-bold text-gray-800 text-sm">${data.nama}</div>
-                                <div class="text-[10px] text-gray-500">${data.nisn} | ${data.kelas}</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 font-mono text-xs text-gray-600">${data.waktu}</td>
-                    <td class="px-6 py-4 text-center">
-                        <span class="px-3 py-1 rounded-full text-[10px] font-bold ${badge}">${data.status}</span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <img src="${data.foto}" class="w-10 h-10 object-cover rounded-md border shadow-sm mx-auto">
-                    </td>
-                </tr>`;
-            tbody.insertAdjacentHTML('afterbegin', tr);
-        }
-
-        function updateVisualStats(status) {
-            document.getElementById('stat-total').innerText = parseInt(document.getElementById('stat-total').innerText) + 1;
-            if(status === 'HADIR') {
-                document.getElementById('stat-hadir').innerText = parseInt(document.getElementById('stat-hadir').innerText) + 1;
-            } else {
-                document.getElementById('stat-alpa').innerText = parseInt(document.getElementById('stat-alpa').innerText) + 1;
-            }
-        }
-    </script>
+function updateStats(status){
+    document.getElementById('stat-total').innerText = parseInt(document.getElementById('stat-total').innerText)+1;
+    if(status === 'HADIR'){
+        document.getElementById('stat-hadir').innerText = parseInt(document.getElementById('stat-hadir').innerText)+1;
+    } else {
+        document.getElementById('stat-alpa').innerText = parseInt(document.getElementById('stat-alpa').innerText)+1;
+    }
+}
+</script>
 </div>
 @endsection

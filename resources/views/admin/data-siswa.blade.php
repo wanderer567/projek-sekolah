@@ -55,7 +55,7 @@
                     <td class="px-6 py-4 text-center">
                         <div class="flex justify-center gap-2">
                             <!-- Tombol Generate QR Code -->
-                            <button @click="generateQR('{{ $s->nisn }}', '{{ $s->nama }}', '{{ $s->kelas }}')"
+                            <button @click="generateQR('{{ $s->code_qr_siswa }}', '{{ $s->nama }}', '{{ $s->kelas }}')"
                                 class="p-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-600 hover:text-white transition"
                                 title="Generate QR Code">
                                 <i class="fas fa-qrcode"></i>
@@ -268,8 +268,8 @@ function studentPage() {
             this.isImportOpen = true;
         },
 
-        generateQR(nisn, nama, kelas) {
-            this.qrData = { nisn, nama, kelas };
+        generateQR(code, nama, kelas) {
+            this.qrData = { code, nama, kelas };
             this.isQRModalOpen = true;
             
             // Generate QR Code setelah modal terbuka
@@ -280,7 +280,7 @@ function studentPage() {
 
         async createQRCode() {
             const canvas = this.$refs.qrCanvas;
-            const data = `SISWA:${this.qrData.nisn}|${this.qrData.nama}|${this.qrData.kelas}`;
+            const data = `SISWA:${this.qrData.code}`;
             
             try {
                 await QRCode.toCanvas(canvas, data, {
@@ -306,7 +306,7 @@ function studentPage() {
         },
 
         copyQRLink() {
-            const data = `SISWA:${this.qrData.nisn}|${this.qrData.nama}|${this.qrData.kelas}`;
+            const data = `SISWA:${this.qrData.code}`;
             navigator.clipboard.writeText(data).then(() => {
                 Swal.fire({
                     icon: 'success',

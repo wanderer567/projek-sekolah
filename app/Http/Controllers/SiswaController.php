@@ -6,6 +6,7 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Imports\SiswaImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 
 class SiswaController extends Controller
 {
@@ -24,13 +25,14 @@ class SiswaController extends Controller
     {
         $query = Siswa::query();
 
-        // Filter berdasarkan kelas jika dipilih
+        // Filter berdasarkan kelas
         if ($request->has('kelas') && $request->kelas != '') {
             $query->where('kelas', $request->kelas);
         }
 
-        // GANTI ->get() menjadi ->paginate(10) agar fungsi links() di blade jalan
-        $siswas = $query->orderBy('nomor_absen', 'asc')->paginate(60)->withQueryString();
+        $siswas = $query->orderBy('nomor_absen', 'asc')
+                        ->paginate(60)
+                        ->withQueryString();
 
         return view('admin.data-siswa', compact('siswas'));
     }
@@ -61,13 +63,12 @@ class SiswaController extends Controller
             'kelas' => 'required',
         ]);
 
-        // Tambahkan logic generate qr_token otomatis jika belum ada di SiswaImport/Model
         Siswa::create([
-            'nomor_absen' => $request->nomor_absen,
-            'nama' => $request->nama,
-            'nisn' => $request->nisn,
-            'kelas' => $request->kelas,
-            'qr_token' => bin2hex(random_bytes(8)), // Generate token unik buat QR
+            'nomor_absen'   => $request->nomor_absen,
+            'nama'          => $request->nama,
+            'nisn'          => $request->nisn,
+            'kelas'         => $request->kelas,
+            'code_qr_siswa' => Str::uuid(), // 🔥 FIX UTAMA
         ]);
 
         return redirect()->back()->with('success', 'Data siswa berhasil ditambah!');
@@ -86,9 +87,9 @@ class SiswaController extends Controller
 
         $siswa->update([
             'nomor_absen' => $request->nomor_absen,
-            'nama' => $request->nama,
-            'nisn' => $request->nisn,
-            'kelas' => $request->kelas,
+            'nama'        => $request->nama,
+            'nisn'        => $request->nisn,
+            'kelas'       => $request->kelas,
         ]);
 
         return redirect()->back()->with('success', 'Data siswa berhasil diupdate!');
