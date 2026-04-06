@@ -20,19 +20,20 @@ class SiswaController extends Controller
         return back()->with('success', 'Data siswa berhasil diimport!');
     }
 
-    // VIEW PAGE
-   public function index(Request $request)
-{
-    $query = Siswa::query();
+    public function index(Request $request)
+    {
+        $query = Siswa::query();
 
-    if ($request->kelas) {
-        $query->where('kelas', 'like', '%' . $request->kelas . '%');
+        // Filter berdasarkan kelas jika dipilih
+        if ($request->has('kelas') && $request->kelas != '') {
+            $query->where('kelas', $request->kelas);
+        }
+
+        // GANTI ->get() menjadi ->paginate(10) agar fungsi links() di blade jalan
+        $siswas = $query->orderBy('nomor_absen', 'asc')->paginate(60)->withQueryString();
+
+        return view('admin.data-siswa', compact('siswas'));
     }
-
-    $siswas = $query->orderBy('nomor_absen', 'asc')->get();
-
-    return view('admin.data-siswa', compact('siswas'));
-}
 
     public function filter(Request $request)
     {
@@ -60,11 +61,13 @@ class SiswaController extends Controller
             'kelas' => 'required',
         ]);
 
+        // Tambahkan logic generate qr_token otomatis jika belum ada di SiswaImport/Model
         Siswa::create([
             'nomor_absen' => $request->nomor_absen,
             'nama' => $request->nama,
             'nisn' => $request->nisn,
             'kelas' => $request->kelas,
+            'qr_token' => bin2hex(random_bytes(8)), // Generate token unik buat QR
         ]);
 
         return redirect()->back()->with('success', 'Data siswa berhasil ditambah!');

@@ -19,7 +19,7 @@ class GuruController extends Controller
     public function store(Request $request) {
     $request->validate([
         'name' => 'required',
-        'nip' => 'required|unique:users,nip', // Validasi NIP unik
+        'nip' => 'required|unique:users,nip', 
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:6',
     ]);
