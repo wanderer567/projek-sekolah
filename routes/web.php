@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     // ---------------------
     Route::get('/manual', fn() => view('guru.absen-manual'))->name('guru.manual');
     Route::get('/qr', [AttendanceController::class, 'index'])->name('guru.qr');
-    Route::get('/download', fn() => view('guru.download-absen'))->name('guru.download');
+    Route::get('/download', fn() => view('errors.503'))->name('errors.503');
 
     Route::middleware(['checkRole:guru'])->group(function () {
         Route::get('/guru/dashboard', fn() => view('guru.dashboard'))->name('guru.dashboard');

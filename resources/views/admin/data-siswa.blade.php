@@ -23,9 +23,9 @@
                 </select>
             </form>
 
-            <button @click="openImportModal()" class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-100 px-4 py-2.5 rounded-xl font-bold hover:bg-emerald-100 transition-all">
+            <!-- <button @click="openImportModal()" class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-100 px-4 py-2.5 rounded-xl font-bold hover:bg-emerald-100 transition-all">
                 <i class="fas fa-file-excel"></i> Import
-            </button>
+            </button> -->
 
             <button @click="openAddModal()" class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all active:scale-95">
                 <i class="fas fa-plus"></i> Tambah Siswa

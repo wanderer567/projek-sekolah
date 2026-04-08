@@ -30,7 +30,11 @@
 
                 <a href="/download" class="flex items-center py-3 px-4 rounded-xl transition duration-200 hover:bg-white/10 {{ Request::is('download') ? 'bg-white text-indigo-900 font-bold shadow-lg' : '' }}">
                     <i class="fas fa-download w-6 text-center mr-3 text-lg"></i> Download Absen
-                </a>
+                    <center>
+                    <nav class="space-y-2 flex-1">
+                <p class="px-4 text-[8px] font-semibold text-indigo-300 uppercase mb-4 tracking-widest">Fitur Ini masih Dalam Pengembangan</p>
+               </center>      
+               </a>
 
                 @if(auth()->check() && auth()->user()->role == 'admin')
     <div class="pt-4 mt-4 border-t border-indigo-800">

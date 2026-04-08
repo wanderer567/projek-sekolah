@@ -24,10 +24,10 @@
                 <text x="165" y="45" fill="#2d336b" font-weight="bold" font-size="16">z</text>
             </svg>
         </div>
-        <h1 class="text-4xl font-bold text-slate-800 mb-2">Maintenance</h1>
-        <h2 class="text-xl font-semibold text-slate-600 mb-4 tracking-tight">Sistem Sedang Istirahat</h2>
+        <h1 class="text-4xl font-bold text-slate-800 mb-2">Pengembangan</h1>
+        <h2 class="text-xl font-semibold text-slate-600 mb-4 tracking-tight">Sistem Sedang Dalam Pengembangan</h2>
         <p class="text-slate-400 mb-10 leading-relaxed text-sm px-4">
-            Kami sedang melakukan pemeliharaan rutin untuk meningkatkan layanan E-ABSEN. Kami akan segera kembali!
+            Kami sedang melakukan Pengembangan lebih lanjut guna meningkatkan layanan SI-ABSEN. Kami akan segera kembali!
         </p>
         <div class="text-sm font-medium text-slate-500 italic">
             — Devloper

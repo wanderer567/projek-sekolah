@@ -41,7 +41,7 @@
     <div class="max-w-7xl mx-auto mb-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
-                <h1 class="text-3xl font-extrabold text-[#1E293B] tracking-tight">E-ABSEN <span class="text-indigo-600">SCANNER</span></h1>
+                <h1 class="text-3xl font-extrabold text-[#1E293B] tracking-tight">SI ABSEN <span class="text-indigo-600">SCANNER</span></h1>
                 <p class="text-slate-500 mt-1 flex items-center gap-2 font-medium">
                     <span class="inline-block w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
                     Sistem Absensi Real-time: <span id="current-date" class="text-slate-700"></span>
